@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "vxchrome",
+  "version": "0.1",
+  "commands": {
+    "listen-en": {
+      "description": "Listen [English]",
+      "suggested_key": {
+        "default": "Ctrl+Shift+0"
+      },
+      "global": true
+    },
+    "listen-th": {
+      "description": "Listen [Thai]",
+      "suggested_key": {
+        "default": "Ctrl+Shift+9"
+      },
+      "global": true
+    }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": ["clipboardWrite"]
+}
