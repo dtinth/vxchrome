@@ -19,5 +19,5 @@
   "background": {
     "scripts": ["background.js"]
   },
-  "permissions": ["clipboardWrite"]
+  "permissions": ["clipboardWrite", "notifications"]
 }
