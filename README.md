@@ -14,6 +14,8 @@ A little Chrome extension that helps me input text using my voice on my Chromebo
 
 ## How to use
 
-Press `Ctrl+Shift+0` to start a stop the recognition in English language.
+- Press `Ctrl+Shift+0` to start a stop the recognition in English language.
 
-Press `Ctrl+Shift+9` to start a stop the recognition in Thai language.
+- Press `Ctrl+Shift+9` to start a stop the recognition in Thai language.
+
+- Go to `chrome://extensions/shortcuts` to customize the keyboard shortcuts to your liking.
