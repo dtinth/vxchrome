@@ -7,15 +7,13 @@
       "description": "Listen [English]",
       "suggested_key": {
         "default": "Ctrl+Shift+0"
-      },
-      "global": true
+      }
     },
     "listen-th": {
       "description": "Listen [Thai]",
       "suggested_key": {
         "default": "Ctrl+Shift+9"
-      },
-      "global": true
+      }
     }
   },
   "background": {
