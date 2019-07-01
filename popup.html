@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>vxchromeserver</title>
+    <title>vxchrome</title>
     <style>
       body {
         background: #353433;
@@ -14,13 +14,20 @@
       }
       #log {
         font: 16px Cousine, Menlo, monospace;
+        min-height: 100vh;
       }
       #text {
         margin: 0;
         font: bold 32px Arimo, Noto Sans Thai, sans-serif;
+        min-height: 100vh;
       }
       #final {
         color: #d7fc70;
+      }
+      #listening {
+        color: #8b8685;
+        font-weight: normal;
+        font-size: 0.5em;
       }
     </style>
   </head>
@@ -28,6 +35,7 @@
     <p id="text">
       <span id="interim"></span>
       <span id="final"></span>
+      <span id="listening" hidden>(listening)</span>&nbsp;
     </p>
     <pre id="log"></pre>
     <script src="popup.js"></script>

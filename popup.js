@@ -1,23 +1,29 @@
 var logContainer = document.querySelector('#log')
 var interimText = document.querySelector('#interim')
 var finalText = document.querySelector('#final')
+var listeningText = document.querySelector('#listening')
 var ac = new AudioContext()
+
+let nextToneTime = 0
 
 function tone(f, s) {
   const d = s * 0.05
+  const t = Math.max(ac.currentTime + d, nextToneTime)
+  nextToneTime = t + 0.05
+
   const osc = ac.createOscillator()
   const gain = ac.createGain()
 
   osc.frequency.value = 220 * Math.pow(2, f / 12)
   osc.connect(gain)
 
-  gain.gain.value = 0.25
-  gain.gain.setValueAtTime(0.25, ac.currentTime + d)
-  gain.gain.linearRampToValueAtTime(0.0, ac.currentTime + d + 0.07)
+  gain.gain.value = 0.2
+  gain.gain.setValueAtTime(0.2, t)
+  gain.gain.linearRampToValueAtTime(0.0, t + 0.07)
   gain.connect(ac.destination)
 
-  osc.start(ac.currentTime + d)
-  osc.stop(ac.currentTime + d + 0.1)
+  osc.start(t)
+  osc.stop(t + 0.1)
 }
 
 function log(text) {
@@ -42,7 +48,7 @@ recognition.onstart = function() {
 }
 recognition.onerror = function() {
   if (event.error === 'no-speech') {
-    listening = false
+    listeningText.hidden = !(listening = false)
     log('Closed: No speech')
   }
   const sendError = message => {
@@ -55,9 +61,9 @@ recognition.onerror = function() {
     sendError('Permission to use microphone is blocked.')
   }
   if (!endSounded) {
-    tone(10, 0)
-    tone(7, 1)
-    tone(4, 2)
+    tone(15, 0)
+    tone(12, 1)
+    tone(9, 2)
     endSounded = true
   }
   clearTimeout(closeTimeout)
@@ -67,7 +73,7 @@ recognition.onerror = function() {
 }
 recognition.onend = function() {
   log('Ended')
-  listening = false
+  listeningText.hidden = !(listening = false)
   if (!endSounded) {
     tone(15, 0)
     tone(8, 1)
@@ -105,7 +111,7 @@ function start(lang) {
   log('Start listening for ' + lang)
   recognition.lang = lang
   recognition.start()
-  listening = true
+  listeningText.hidden = !(listening = true)
   endSounded = false
 }
 
