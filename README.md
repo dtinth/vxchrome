@@ -24,3 +24,23 @@ It should work on macOS and Windows as well as on Linux.
 
 - Go to `chrome://extensions/shortcuts` to customize the keyboard shortcuts to your liking.
   On Windows and macOS, you may also set the shortcut to be global, so that you can use it outside Chrome.
+
+## How to develop
+
+### Set up
+
+1. Clone the project to your local machine.
+
+2. Go to `chrome://extensions` and enable the developer mode.
+
+3. Click “Load unpacked.”
+
+4. Select the project folder.
+
+### Development
+
+- For the popup (`popup.html` and `popup.js`), you can edit the file and save.
+  The next time you open the popup by triggering the listen command, it will load the latest version automatically.
+
+- For the background script (`background.js`), after you edit the code and save,
+  go to `chrome://extensions` and click the reload button under the vxchrome extension.
