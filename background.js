@@ -36,3 +36,26 @@ chrome.windows.onRemoved.addListener(function(windowId) {
     currentWindow = null
   }
 })
+
+chrome.browserAction.onClicked.addListener(buttonClicked)
+
+function buttonClicked(tab){
+    console.log("Button Clicked!")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

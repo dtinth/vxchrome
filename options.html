@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -30,16 +30,27 @@
         font-size: 0.5em;
       }
     </style>
-  </head>
-  <body>
+</head>
+<body>
 
-    <p id="text">
-      <span id="interim"></span>
-      <span id="final"></span>
-      <span id="listening" hidden>(listening)</span>&nbsp;
-    </p>
+first language:
+<select id="first language">
+    <option value="English">English</option>
+    <option value="green">green</option>
+    <option value="blue">blue</option>
+    <option value="yellow">yellow</option>
+</select>
+<br>
+second language:
+<select id="second language">
+    <option value="Thai">Thai</option>
+    <option value="green">green</option>
+    <option value="blue">blue</option>
+    <option value="yellow">yellow</option>
+</select>
+<br>
 
-    <pre id="log"></pre>
-    <script src="popup.js"></script>
-  </body>
+
+<script src="popup.js"></script>
+</body>
 </html>
