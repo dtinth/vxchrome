@@ -7,7 +7,7 @@ It should work on macOS and Windows as well as on Linux.
 
 1. Download the source code and extract it.
 
-2. Go to `chrome://extension` and enable the developer mode.
+2. Go to `chrome://extensions` and enable the developer mode.
 
 3. Click “Load unpacked.”
 
