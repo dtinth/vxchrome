@@ -38,10 +38,13 @@ chrome.windows.onRemoved.addListener(function(windowId) {
 })
 
 chrome.browserAction.onClicked.addListener(buttonClicked)
-
-function buttonClicked(tab){
-    console.log("Button Clicked!")
-}
+function buttonClicked() {
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage();
+  } else {
+    window.open(chrome.runtime.getURL('options.html'));
+  }
+};
 
 
 
