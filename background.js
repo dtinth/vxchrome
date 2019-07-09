@@ -21,20 +21,17 @@ function listen(lang) {
   )
 }
 
-chrome.storage.sync.get(["language1", "language2"],
-function(items){
-    language1 = items.language1;
-    language2 = items.language2;
-});
-
 chrome.commands.onCommand.addListener(function(command) {
-//ตรวจภาษา
-  if (command === 'listen-en') {
-    listen(language1)
-  }
-  if (command === 'listen-th') {
-    listen(language2)
-  }
+  chrome.storage.sync.get(["language1", "language2"], function(items) {
+      language1 = items.language1;
+      language2 = items.language2;
+      if (command === 'listen-en') {
+        listen(language1)
+      }
+      if (command === 'listen-th') {
+        listen(language2)
+      }
+  })
 })
 
 chrome.windows.onRemoved.addListener(function(windowId) {
@@ -52,20 +49,6 @@ function buttonClicked() {
     window.open(chrome.runtime.getURL('options.html'));
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
