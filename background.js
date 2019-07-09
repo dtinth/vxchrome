@@ -21,12 +21,19 @@ function listen(lang) {
   )
 }
 
+chrome.storage.sync.get(["language1", "language2"],
+function(items){
+    language1 = items.language1;
+    language2 = items.language2;
+});
+
 chrome.commands.onCommand.addListener(function(command) {
+//ตรวจภาษา
   if (command === 'listen-en') {
-    listen('en')
+    listen(language1)
   }
   if (command === 'listen-th') {
-    listen('th')
+    listen(language2)
   }
 })
 
