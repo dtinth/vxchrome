@@ -17,8 +17,7 @@ function tone(f, s) {
   osc.frequency.value = 220 * Math.pow(2, f / 12)
   osc.connect(gain)
 
-  gain.gain.value = 0.2
-  gain.gain.setValueAtTime(0.2, t)
+  gain.gain.setValueAtTime(0.5, t)
   gain.gain.linearRampToValueAtTime(0.0, t + 0.07)
   gain.connect(ac.destination)
 
