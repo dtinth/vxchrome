@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<html>
+<head>
     <title>vxchrome</title>
     <style>
       body {
@@ -30,16 +27,17 @@
         font-size: 0.5em;
       }
     </style>
-  </head>
-  <body>
+</head>
+<body>
 
-    <p id="text">
-      <span id="interim"></span>
-      <span id="final"></span>
-      <span id="listening" hidden>(listening)</span>&nbsp;
-    </p>
-
-    <pre id="log"></pre>
-    <script src="popup.js"></script>
-  </body>
+first language:
+<input id='first_language' type='text' placeholder="Enter First language" />
+<br>
+second language:
+<input id='second_language' type='text' placeholder="Enter Second language" />
+<br>
+<button id="btn_save"> save </button>
+<div id="status"></div>
+<script src="options.js"></script>
+</body>
 </html>
