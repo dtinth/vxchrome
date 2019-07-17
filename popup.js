@@ -125,7 +125,18 @@ function copyTextToClipboard(text) {
   document.body.removeChild(copyFrom)
 }
 
+function openOptions() {
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage()
+  } else {
+    window.open(chrome.runtime.getURL('options.html'))
+  }
+}
+
 start(location.hash.match(/lang=([^&]+)/)[1])
+document
+  .querySelector('#open-options-button')
+  .addEventListener('click', openOptions)
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.type === 'toggle') {

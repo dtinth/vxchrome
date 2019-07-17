@@ -39,11 +39,8 @@ chrome.windows.onRemoved.addListener(function(windowId) {
   }
 })
 
-chrome.browserAction.onClicked.addListener(buttonClicked)
-function buttonClicked() {
-  if (chrome.runtime.openOptionsPage) {
-    chrome.runtime.openOptionsPage()
-  } else {
-    window.open(chrome.runtime.getURL('options.html'))
-  }
-}
+chrome.browserAction.onClicked.addListener(function() {
+  chrome.storage.sync.get(defaultSettings, function(settings) {
+    listen(settings.language1)
+  })
+})
