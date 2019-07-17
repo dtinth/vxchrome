@@ -108,10 +108,10 @@ function start(lang) {
   clearTimeout(closeTimeout)
   tone(0, 0)
   log('Start listening for ' + lang)
-  document.title = `vxchrome [${lang}]`
   recognition.lang = lang
   recognition.start()
   listeningText.hidden = !(listening = true)
+  listeningText.textContent = `(listening, ${lang})`
   endSounded = false
 }
 
