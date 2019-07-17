@@ -3,13 +3,13 @@
   "name": "vxchrome",
   "version": "0.1",
   "commands": {
-    "listen-en": {
+    "listen1": {
       "description": "Listen [first language]",
       "suggested_key": {
         "default": "Ctrl+Shift+0"
       }
     },
-    "listen-th": {
+    "listen2": {
       "description": "Listen [second language]",
       "suggested_key": {
         "default": "Ctrl+Shift+9"

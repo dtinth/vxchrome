@@ -25,10 +25,10 @@ chrome.commands.onCommand.addListener(function(command) {
   chrome.storage.sync.get(['language1', 'language2'], function(items) {
     language1 = items.language1
     language2 = items.language2
-    if (command === 'listen-en') {
+    if (command === 'listen1') {
       listen(language1)
     }
-    if (command === 'listen-th') {
+    if (command === 'listen2') {
       listen(language2)
     }
   })
