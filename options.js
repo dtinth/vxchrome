@@ -19,16 +19,10 @@ function save_options() {
 }
 
 function restore_options() {
-  chrome.storage.sync.get(
-    {
-      language1: 'en',
-      language2: 'th',
-    },
-    function(items) {
-      document.getElementById('first_language').value = items.language1
-      document.getElementById('second_language').value = items.language2
-    },
-  )
+  chrome.storage.sync.get(defaultSettings, function(items) {
+    document.getElementById('first_language').value = items.language1
+    document.getElementById('second_language').value = items.language2
+  })
 }
 
 document.addEventListener('DOMContentLoaded', restore_options)

@@ -22,7 +22,7 @@ function listen(lang) {
 }
 
 chrome.commands.onCommand.addListener(function(command) {
-  chrome.storage.sync.get(['language1', 'language2'], function(items) {
+  chrome.storage.sync.get(defaultSettings, function(items) {
     language1 = items.language1
     language2 = items.language2
     if (command === 'listen1') {

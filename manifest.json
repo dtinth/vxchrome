@@ -17,7 +17,7 @@
     }
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["settings.js", "background.js"]
   },
   "permissions": ["clipboardWrite", "notifications", "storage"],
 
