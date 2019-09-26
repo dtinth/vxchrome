@@ -1405,7 +1405,7 @@ var PromiseHelper = /** @class */ (function () {
     return PromiseHelper;
 }());
 exports.PromiseHelper = PromiseHelper;
-// TODO: replace with ES6 promises
+// TODO [$5d8ce201939c62000706f4a0]: replace with ES6 promises
 // tslint:disable-next-line:max-classes-per-file
 var Promise = /** @class */ (function () {
     function Promise(sink) {
@@ -1706,7 +1706,7 @@ var Queue = /** @class */ (function () {
                             _this.privList.add(p.result().result);
                         }
                         else {
-                            // TODO: Log as warning.
+                            // TODO [$5d8ce201939c62000706f4a1]: Log as warning.
                         }
                     }
                 }
@@ -1746,7 +1746,7 @@ var Queue = /** @class */ (function () {
                 if (subs) {
                     while (subs.length() > 0) {
                         var subscriber = subs.removeFirst();
-                        // TODO: this needs work (Resolve(null) instead?).
+                        // TODO [$5d8ce201939c62000706f4a2]: this needs work (Resolve(null) instead?).
                         subscriber.deferral.resolve(undefined);
                         // subscriber.deferral.reject("Disposed");
                     }
@@ -2423,9 +2423,9 @@ var WebsocketMessageAdapter = /** @class */ (function () {
                 });
             };
             _this.privWebsocketClient.onerror = function (e) {
-                // TODO: Understand what this is error is. Will we still get onClose ?
+                // TODO [$5d8ce201939c62000706f4a3]: Understand what this is error is. Will we still get onClose ?
                 if (_this.privConnectionState !== Exports_1.ConnectionState.Connecting) {
-                    // TODO: Is this required ?
+                    // TODO [$5d8ce201939c62000706f4a4]: Is this required ?
                     // this.onEvent(new ConnectionErrorEvent(errorMsg, connectionId));
                 }
             };
@@ -2454,7 +2454,7 @@ var WebsocketMessageAdapter = /** @class */ (function () {
                             _this.onEvent(new Exports_1.ConnectionMessageReceivedEvent(_this.privConnectionId, networkReceivedTime, connectionMessage));
                             deferred_1.resolve(connectionMessage);
                         }, function (error) {
-                            // TODO: Events for these ?
+                            // TODO [$5d8ce201939c62000706f4a5]: Events for these ?
                             deferred_1.reject("Invalid binary message format. Error: " + error);
                         });
                     }
@@ -2466,7 +2466,7 @@ var WebsocketMessageAdapter = /** @class */ (function () {
                             _this.onEvent(new Exports_1.ConnectionMessageReceivedEvent(_this.privConnectionId, networkReceivedTime, connectionMessage));
                             deferred_1.resolve(connectionMessage);
                         }, function (error) {
-                            // TODO: Events for these ?
+                            // TODO [$5d8ce201939c62000706f4a6]: Events for these ?
                             deferred_1.reject("Invalid text message format. Error: " + error);
                         });
                     }
@@ -2533,7 +2533,7 @@ var WebsocketMessageAdapter = /** @class */ (function () {
             _this.privDisconnectDeferral.resolve(true);
             _this.privReceivingMessageQueue.dispose(reason);
             _this.privReceivingMessageQueue.drainAndDispose(function (pendingReceiveItem) {
-                // TODO: Events for these ?
+                // TODO [$5d8ce201939c62000706f4a7]: Events for these ?
                 // Logger.instance.onEvent(new LoggingEvent(LogType.Warning, null, `Failed to process received message. Reason: ${closeReason}, Message: ${JSON.stringify(pendingReceiveItem)}`));
             }, closeReason);
             _this.privSendMessageQueue.drainAndDispose(function (pendingSendItem) {
@@ -3569,7 +3569,7 @@ var MicAudioSource = /** @class */ (function () {
                         // HACK: this should be handled through onError callbacks of all promises up the stack.
                         // Unfortunately, the current implementation does not provide an easy way to reject promises
                         // without a lot of code replication.
-                        // TODO: fix promise implementation, allow for a graceful reject chaining.
+                        // TODO [$5d8ce201939c62000706f4a8]: fix promise implementation, allow for a graceful reject chaining.
                         _this.privInitializeDeferral = null;
                         tmp.reject(errorMsg); // this will bubble up through the whole chain of promises,
                         // with each new level adding extra "Unhandled callback error" prefix to the error message.
@@ -8242,7 +8242,7 @@ var ServiceRecognizerBase = /** @class */ (function () {
             // of the error callback chain (looks like the recursion is way too deep, and
             // it blows up the stack). The following construct is a stop-gap that does not
             // bubble the error up the callback chain and hence circumvents this problem.
-            // TODO: rewrite with ES6 promises.
+            // TODO [$5d8ce201939c62000706f4a9]: rewrite with ES6 promises.
             var deferred = new Exports_2.Deferred();
             // The time we last sent data to the service.
             var nextSendTime = Date.now();
@@ -11202,7 +11202,7 @@ function Buffer (arg, encodingOrOffset, length) {
 
 Buffer.poolSize = 8192 // not used by this implementation
 
-// TODO: Legacy, not needed anymore. Remove in next major version.
+// TODO [$5d8ce201939c62000706f4aa]: Legacy, not needed anymore. Remove in next major version.
 Buffer._augment = function (arr) {
   arr.__proto__ = Buffer.prototype
   return arr
