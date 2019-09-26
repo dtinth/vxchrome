@@ -34,7 +34,7 @@ function log(text) {
   }
 }
 
-var recognition = new webkitSpeechRecognition()
+var recognition = new webkitSpeechRecognition() // azureSpeechRecognition() //
 var listening = false
 var endSounded = false
 var closeTimeout = null
