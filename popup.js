@@ -45,7 +45,7 @@ recognition.onstart = function() {
   tone(5, 0)
   tone(10, 1)
 }
-recognition.onerror = function() {
+recognition.onerror = function(event) {
   if (event.error === 'no-speech') {
     listeningText.hidden = !(listening = false)
     log('Closed: No speech')
@@ -67,6 +67,7 @@ recognition.onerror = function() {
   }
   clearTimeout(closeTimeout)
   closeTimeout = setTimeout(() => {
+    chrome.notifications.clear('vx')
     window.close()
   }, 1000)
 }
@@ -82,6 +83,7 @@ recognition.onend = function() {
 
   clearTimeout(closeTimeout)
   closeTimeout = setTimeout(() => {
+    chrome.notifications.clear('vx')
     window.close()
   }, 1000)
 }
@@ -97,6 +99,10 @@ recognition.onresult = function(event) {
   }
   interimText.textContent = interimTranscript
   finalText.textContent = finalTranscript
+  chrome.notifications.update('vx', {
+    message: `${finalTranscript}${interimTranscript}`,
+    progress: finalTranscript ? 100 : 0,
+  })
   if (finalTranscript) {
     copyTextToClipboard(finalTranscript.trim())
     tone(5, 0)
@@ -112,6 +118,14 @@ function start(lang) {
   recognition.start()
   listeningText.hidden = !(listening = true)
   listeningText.textContent = `(listening, ${lang})`
+  chrome.notifications.create('vx', {
+    type: 'progress',
+    title: 'Listening…',
+    message: '',
+    silent: true,
+    progress: 0,
+    iconUrl: 'icon.png',
+  })
   endSounded = false
 }
 
