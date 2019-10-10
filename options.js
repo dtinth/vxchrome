@@ -1,17 +1,17 @@
 // Saves options to chrome.storage
 function save_options() {
-  var firstLanguage = document.getElementById('first_language').value
-  var secondLanguage = document.getElementById('second_language').value
+  let firstLanguage = document.getElementById('first_language').value
+  let secondLanguage = document.getElementById('second_language').value
   chrome.storage.sync.set(
     {
       language1: firstLanguage,
       language2: secondLanguage,
     },
-    function() {
+    () => {
       // Update status to let user know options were saved.
-      var status = document.getElementById('status')
+      let status = document.getElementById('status')
       status.textContent = 'Options saved.'
-      setTimeout(function() {
+      setTimeout(() => {
         status.textContent = ''
       }, 750)
     },
@@ -19,7 +19,7 @@ function save_options() {
 }
 
 function restore_options() {
-  chrome.storage.sync.get(defaultSettings, function(items) {
+  chrome.storage.sync.get(defaultSettings, items => {
     document.getElementById('first_language').value = items.language1
     document.getElementById('second_language').value = items.language2
   })
