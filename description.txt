@@ -1,8 +1,8 @@
 An extension that listens to you and copies what you said to the clipboard.
 
 Copy to Clipboard
-・ Unlike other “voice typing” extensions, vx only copies what you said to the clipboard.
-・ Therefore, it works with all apps that lets you paste text; not just Google Chrome.
+・ Unlike other “voice typing” extensions, vx only copies what you said to the clipboard, and doesn’t type the text for you.
+・ Therefore, it works with all apps that lets you paste in text; not just Google Chrome.
 ・ If the speech recognizer did not get it right, just say the phrase again (more slowly and clearly).
 ・ This makes it convenient for non-native speakers, not having to press the undo every time.
 ・ Some early users reported having 2x productivity over conventional voice typing solutions (such as the built-in Dictation that comes with macOS).
