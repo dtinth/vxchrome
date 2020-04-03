@@ -30,7 +30,7 @@
                 id="first_language"
                 type="text"
                 placeholder="Enter second language"
-                v-model="settings.language1"
+                v-model="store.settings.language1"
               />
             </div>
           </div>
@@ -50,7 +50,7 @@
                 id="second_language"
                 type="text"
                 placeholder="Enter second language"
-                v-model="settings.language2"
+                v-model="store.settings.language2"
               />
             </div>
           </div>
@@ -59,7 +59,7 @@
             <div class="w-1/3"></div>
             <div>
               <button
-                @click="save"
+                @click="store.save"
                 class="shadow text-090807 focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded"
                 :class="[changed ? 'bg-d7fc70' : 'bg-8b8685']"
                 type="button"

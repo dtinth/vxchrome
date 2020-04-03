@@ -1,11 +1,15 @@
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-var vm
+var vm = new Vue({
+  el: '#app',
+  data: {
+    store: null,
+  },
+})
 
 function main({ defaultSettings, settings }) {
-  vm = new Vue({
-    el: '#app',
+  vm.store = new Vue({
     data: {
       savedSettings: JSON.parse(JSON.stringify(settings)),
       settings,
