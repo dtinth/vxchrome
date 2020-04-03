@@ -1,7 +1,8 @@
 {
   "manifest_version": 2,
   "name": "vx",
-  "version": "0.1",
+  "summary": "This extension listens to you and copies what you said to the clipboard.",
+  "version": "0.3.0",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "commands": {
     "listen1": {
@@ -25,6 +26,7 @@
   "browser_action": {
     "default_icon": "icon.png"
   },
+  "icons": { "512": "icon.png" },
 
   "options_ui": {
     "page": "options.html",
