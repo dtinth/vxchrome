@@ -1,4 +1,7 @@
 {
+  "name": "vx-chrome",
+  "version": "0.3.0",
+  "dependencies": {},
   "devDependencies": {
     "@tailwindcss/custom-forms": "^0.2.1",
     "@types/chrome": "^0.0.103",
@@ -6,5 +9,19 @@
   },
   "scripts": {
     "prepare": "tailwindcss build tailwind.src.css -o tailwind.css"
-  }
+  },
+  "files": [
+    "src",
+    "vendor",
+    "background.html",
+    "content-script.js",
+    "icon.png",
+    "manifest.json",
+    "options.html",
+    "options.js",
+    "popup.html",
+    "popup.js",
+    "tailwind.css"
+  ],
+  "private": true
 }
