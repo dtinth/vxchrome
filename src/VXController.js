@@ -1,29 +1,13 @@
 import * as VXViews from './VXOutputModules.js'
 
-var ac = new AudioContext()
-let nextToneTime = 0
-
-let views = [VXViews.PopupOutputModule]
+let views = [
+  VXViews.PopupOutputModule,
+  VXViews.SoundOutputModule,
+  VXViews.SessionNotificationOutputModule,
+  VXViews.TranscriptNotificationOutputModule,
+]
 let resultHandler = defaultResultHandler
-
-function tone(f, s) {
-  const d = s * 0.05
-  const t = Math.max(ac.currentTime + d, nextToneTime)
-  nextToneTime = t + 0.05
-
-  const osc = ac.createOscillator()
-  const gain = ac.createGain()
-
-  osc.frequency.value = 220 * Math.pow(2, f / 12)
-  osc.connect(gain)
-
-  gain.gain.setValueAtTime(0.5, t)
-  gain.gain.linearRampToValueAtTime(0.0, t + 0.07)
-  gain.connect(ac.destination)
-
-  osc.start(t)
-  osc.stop(t + 0.1)
-}
+let currentSettings
 
 const state = mobx.observable({
   status: 'idle',
@@ -31,35 +15,15 @@ const state = mobx.observable({
   finalTranscript: '',
 })
 
-// Sound
-mobx.autorun(() => {
-  const { status } = state
-  if (status === 'starting') {
-    tone(0, 0)
-  }
-  if (status === 'listening') {
-    tone(5, 0)
-    tone(10, 1)
-  }
-  if (status === 'error') {
-    tone(15, 0)
-    tone(12, 1)
-    tone(9, 2)
-  }
-  if (status === 'ended') {
-    tone(15, 0)
-    tone(8, 1)
-    tone(1, 2)
-  }
-})
-
 // View
 {
   const view = payload => {
-    console.log('View:', payload)
+    log('View:', payload)
     views.forEach(v => {
       try {
-        v(payload)
+        if (currentSettings) {
+          v(payload, currentSettings)
+        }
       } catch (e) {
         console.error(`Output module "${v.name}" failed`, e)
       }
@@ -96,8 +60,8 @@ mobx.autorun(() => {
   })
 }
 
-function log(text) {
-  console.log('[' + new Date().toJSON() + '] ' + text)
+function log(fmt, ...args) {
+  console.log(`[VXController] ${fmt}`, ...args)
 }
 
 var recognition = new webkitSpeechRecognition() // azureSpeechRecognition() //
@@ -153,11 +117,6 @@ recognition.onresult = function(event) {
     state.interimTranscript = interimTranscript
   })
   resultHandler(interimTranscript, finalTranscript)
-  if (finalTranscript) {
-    tone(5, 0)
-    tone(10, 1)
-    tone(15, 2)
-  }
 }
 
 function defaultResultHandler(interimTranscript, finalTranscript) {
@@ -192,6 +151,7 @@ export function isActive() {
 }
 
 export function toggle(request) {
+  currentSettings = request.settings
   if (isActive()) {
     recognition.stop()
   } else {
