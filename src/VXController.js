@@ -90,9 +90,15 @@ recognition.onerror = function(event) {
   }
   if (event.error === 'audio-capture') {
     logError('No microphone was found.')
+    chrome.tabs.create({
+      url: chrome.runtime.getURL('options.html') + '?err=audio-capture',
+    })
   }
   if (event.error === 'not-allowed') {
     logError('Permission to use microphone is blocked.')
+    chrome.tabs.create({
+      url: chrome.runtime.getURL('options.html') + '?err=not-allowed',
+    })
   }
 }
 

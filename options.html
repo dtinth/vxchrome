@@ -14,7 +14,58 @@
       </h1>
       <template v-if="true">
         <div class="max-w-xl">
-          <h2 class="text-2xl text-bbeeff mt-6 mb-4">Language settings</h2>
+          <div
+            class="mb-4 text-xl bg-yellow-900 rounded p-4 text-white border border-yellow-400"
+            v-if="source === 'audio-capture-err'"
+          >
+            <strong class="text-bbeeff">Hey there!</strong>
+            It seems like Google Chrome did not detect any microphone on your
+            machine. Make make sure your device has been set up properly!
+          </div>
+
+          <h2 class="text-2xl text-d7fc70 mt-6 mb-4">Microphone permission</h2>
+
+          <div
+            class="mb-4 text-xl bg-yellow-900 rounded p-4 text-white border border-yellow-400"
+            v-if="source === 'not-allowed-err'"
+          >
+            <strong class="text-bbeeff">Hey there!</strong>
+            It seems like you need to grant vx access to the microphone first.
+            Just click the button below...
+          </div>
+
+          <div class="flex items-center mb-4">
+            <div class="w-1/3"></div>
+            <div>
+              <button
+                @click="grantMic"
+                type="button"
+                class="block shadow bg-blue-500 text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded"
+              >
+                Grant microphone permission
+              </button>
+              <div
+                class="mt-2 text-teal-300"
+                v-if="grantStatus && grantStatus.ok === 'pending'"
+              >
+                Asking for permission...
+              </div>
+              <div
+                class="mt-2 text-green-300"
+                v-else-if="grantStatus && grantStatus.ok"
+              >
+                Grant successful! Try using the extension again.
+              </div>
+              <div
+                class="mt-2 text-red-300"
+                v-else-if="grantStatus && !grantStatus.ok"
+              >
+                Grant unsuccessful... {{grantStatus.message}}
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-2xl text-d7fc70 mt-6 mb-4">Language settings</h2>
 
           <div class="flex items-baseline mb-4">
             <div class="w-1/3">
@@ -58,7 +109,7 @@
 
           <save-button :store="store"></save-button>
 
-          <h2 class="text-2xl text-bbeeff mt-6 mb-4">Keyboard shortcuts</h2>
+          <h2 class="text-2xl text-d7fc70 mt-6 mb-4">Keyboard shortcuts</h2>
 
           <div class="flex items-center mb-4">
             <div class="w-1/3"></div>
@@ -72,7 +123,7 @@
             </div>
           </div>
 
-          <h2 class="text-2xl text-bbeeff mt-6 mb-4">
+          <h2 class="text-2xl text-d7fc70 mt-6 mb-4">
             Output settings
           </h2>
 
@@ -172,7 +223,7 @@
 
           <save-button :store="store"></save-button>
 
-          <h2 class="text-2xl text-bbeeff mt-6 mb-4">
+          <h2 class="text-2xl text-d7fc70 mt-6 mb-4">
             For advanced users only
           </h2>
           <p class="text-red-400 mb-4">

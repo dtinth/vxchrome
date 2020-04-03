@@ -76,12 +76,41 @@ var vm = new Vue({
   el: '#app',
   data: {
     store: null,
+    grantStatus: null,
+    source: null,
+  },
+  mounted() {
+    if (location.search.match(/err=not-allowed/)) {
+      this.source = 'not-allowed-err'
+    }
+    if (location.search.match(/err=audio-capture/)) {
+      this.source = 'audio-capture-err'
+    }
   },
   methods: {
     shortcuts() {
       chrome.tabs.create({
         url: 'chrome://extensions/shortcuts',
       })
+    },
+    async grantMic() {
+      this.grantStatus = { ok: 'pending' }
+      try {
+        await new Promise((resolve, reject) => {
+          const sr = new webkitSpeechRecognition()
+          sr.onstart = () => {
+            sr.stop()
+            resolve()
+          }
+          sr.onerror = event => {
+            reject(new Error(event.error))
+          }
+          sr.start()
+        })
+        this.grantStatus = { ok: true }
+      } catch (e) {
+        this.grantStatus = { ok: false, message: String(e.message) }
+      }
     },
   },
 })
