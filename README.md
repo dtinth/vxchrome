@@ -1,4 +1,4 @@
-# vxchrome
+# vx [chrome extension version]
 
 A little Chrome extension that helps me input text using my voice on my Chromebook.
 It should work on macOS and Windows as well as on Linux.
@@ -19,6 +19,8 @@ It should work on macOS and Windows as well as on Linux.
 
 - Press `Ctrl+Shift+9` to start a stop the recognition in Thai language.
 
+- Languages and keyboard shortcuts can be customized.
+
 - Whatever you speak is copied into the clipboard, so you can paste into any apps immediately afterwards.
   If the recognition is incorrect, you can just re-speak it (or fix it manually).
 
@@ -36,11 +38,3 @@ It should work on macOS and Windows as well as on Linux.
 3. Click “Load unpacked.”
 
 4. Select the project folder.
-
-### Development
-
-- For the popup (`popup.html` and `popup.js`), you can edit the file and save.
-  The next time you open the popup by triggering the listen command, it will load the latest version automatically.
-
-- For the background script (`background.js`), after you edit the code and save,
-  go to `chrome://extensions` and click the reload button under the vxchrome extension.
