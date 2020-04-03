@@ -1,31 +1,43 @@
-// Saves options to chrome.storage
-import { defaultSettings } from './src/VXDefaultSettings.js'
+Vue.config.productionTip = false
+Vue.config.devtools = false
 
-function save_options() {
-  let firstLanguage = document.getElementById('first_language').value
-  let secondLanguage = document.getElementById('second_language').value
-  chrome.storage.sync.set(
-    {
-      language1: firstLanguage,
-      language2: secondLanguage,
-    },
-    () => {
-      // Update status to let user know options were saved.
-      let status = document.getElementById('status')
-      status.textContent = 'Options saved.'
-      setTimeout(() => {
-        status.textContent = ''
-      }, 750)
-    },
-  )
-}
+var vm
 
-function restore_options() {
-  chrome.storage.sync.get(defaultSettings, items => {
-    document.getElementById('first_language').value = items.language1
-    document.getElementById('second_language').value = items.language2
+function main({ defaultSettings, settings }) {
+  vm = new Vue({
+    el: '#app',
+    data: {
+      savedSettings: JSON.parse(JSON.stringify(settings)),
+      settings,
+      defaultSettings,
+      status: '',
+    },
+    computed: {
+      changed() {
+        return (
+          JSON.stringify(this.settings) !== JSON.stringify(this.savedSettings)
+        )
+      },
+    },
+    watch: {
+      changed() {
+        if (this.status) this.status = ''
+      },
+    },
+    methods: {
+      save() {
+        const newSettings = JSON.parse(JSON.stringify(settings))
+        chrome.storage.sync.set(newSettings, () => {
+          this.savedSettings = newSettings
+          this.status = 'All changes saved'
+        })
+      },
+    },
   })
 }
 
-document.addEventListener('DOMContentLoaded', restore_options)
-document.getElementById('btn_save').addEventListener('click', save_options)
+import('./src/VXDefaultSettings.js').then(({ defaultSettings }) => {
+  chrome.storage.sync.get(defaultSettings, settings => {
+    main({ defaultSettings, settings })
+  })
+})
