@@ -8,7 +8,7 @@
     "tailwindcss": "^1.2.0"
   },
   "scripts": {
-    "prepare": "tailwindcss build tailwind.src.css -o tailwind.css"
+    "tailwind:build": "tailwindcss build tailwind.src.css -o tailwind.css"
   },
   "files": [
     "src",
