@@ -3,7 +3,7 @@
 FILE="$(npm pack)"
 
 echo "$FILE"
-rm -rf tmp/package tmp/vx.zip
+rm -rf tmp/vx tmp/vx.zip
 mkdir -p tmp
 tar xvzf "$FILE" -C tmp
 mv tmp/package tmp/vx
