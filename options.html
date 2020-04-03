@@ -3,49 +3,67 @@
   <head>
     <title>vxchrome</title>
     <style>
-      body {
-        background: #353433;
-        color: #e9e8e7;
-        font: 18px Arimo, sans-serif;
-        padding: 8px 24px;
-      }
-      #log {
-        font: 16px Cousine, Menlo, monospace;
-        min-height: 100vh;
-      }
-      #text {
-        margin: 0;
-        font: bold 32px Arimo, Noto Sans Thai, sans-serif;
-        min-height: 100vh;
-      }
-      #final {
-        color: #d7fc70;
-      }
-      #listening {
-        color: #8b8685;
-        font-weight: normal;
-        font-size: 0.5em;
-      }
+      @import 'tailwind.css';
     </style>
   </head>
-  <body>
-    <!--
-      - TODO [#4]: Use a select box for specifying a language.
-      - The list of available languages is available here: https://www.google.com/intl/en/chrome/demos/speech.html
-      -->
-    first language:
-    <input id="first_language" type="text" placeholder="Enter First language" />
-    <br />
-    second language:
-    <input
-      id="second_language"
-      type="text"
-      placeholder="Enter Second language"
-    />
-    <br />
-    <button id="btn_save">save</button>
+  <body class="bg-353433 text-e9e8e7 p-8 text-base">
+    <h1 class="text-8b8685 text-4xl">
+      vx options
+    </h1>
+    <div class="max-w-lg">
+      <div class="flex items-center mt-6">
+        <div class="w-1/3">
+          <label
+            class="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+            for="first_language"
+          >
+            First language
+          </label>
+        </div>
+        <div class="w-2/3">
+          <input
+            class="block appearance-none w-full bg-090807 border border-454443 hover:border-656463 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline placeholder-8b8685"
+            id="first_language"
+            type="text"
+            placeholder="Enter second language"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center mt-4">
+        <div class="w-1/3">
+          <label
+            class="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+            for="second_language"
+          >
+            Second language
+          </label>
+        </div>
+        <div class="w-2/3">
+          <input
+            class="block appearance-none w-full bg-090807 border border-454443 hover:border-656463 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline placeholder-8b8685"
+            id="second_language"
+            type="text"
+            placeholder="Enter second language"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center mt-4">
+        <div class="w-1/3"></div>
+        <div class="w-2/3">
+          <button
+            id="btn_save"
+            class="shadow bg-d7fc70 text-090807 focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded"
+            type="button"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div id="status"></div>
-    <script src="VXDefaultSettings.js"></script>
-    <script src="options.js"></script>
+    <script type="module" src="options.js"></script>
   </body>
 </html>

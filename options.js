@@ -1,4 +1,6 @@
 // Saves options to chrome.storage
+import { defaultSettings } from './src/VXDefaultSettings.js'
+
 function save_options() {
   let firstLanguage = document.getElementById('first_language').value
   let secondLanguage = document.getElementById('second_language').value

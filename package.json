@@ -1,5 +1,9 @@
 {
   "devDependencies": {
-    "@types/chrome": "^0.0.103"
+    "@types/chrome": "^0.0.103",
+    "tailwindcss": "^1.2.0"
+  },
+  "scripts": {
+    "prepare": "tailwindcss build tailwind.src.css -o tailwind.css"
   }
 }
