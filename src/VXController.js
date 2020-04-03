@@ -122,16 +122,20 @@ recognition.onresult = function(event) {
       interimTranscript += event.results[i][0].transcript
     }
   }
+  const filteredFinalTranscript = filterTranscript(finalTranscript)
+  const filteredInterimTranscript = filterTranscript(interimTranscript)
   mobx.runInAction('onresult', () => {
-    state.finalTranscript = filterTranscript(finalTranscript)
-    state.interimTranscript = filterTranscript(interimTranscript)
+    state.finalTranscript = filteredFinalTranscript
+    state.interimTranscript = filteredInterimTranscript
   })
-  resultHandler(interimTranscript, finalTranscript)
+  resultHandler(filteredInterimTranscript, filteredFinalTranscript)
 }
 
 function defaultResultHandler(interimTranscript, finalTranscript) {
   if (finalTranscript) {
-    copyTextToClipboard(finalTranscript.trim())
+    if (currentSettings.outputClipboard === 'on') {
+      copyTextToClipboard(finalTranscript.trim())
+    }
   }
 }
 

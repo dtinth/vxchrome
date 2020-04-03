@@ -152,6 +152,24 @@
             </div>
           </div>
 
+          <div class="flex items-baseline mb-4">
+            <div class="w-1/3">
+              <h3 class="block font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Clipboard
+              </h3>
+            </div>
+            <div class="w-2/3">
+              <boolean-flag
+                :store="store"
+                setting-key="outputClipboard"
+                title="Copy to clipboard"
+              >
+                You can uncheck this… but isn't it why you installed this
+                extension?
+              </boolean-flag>
+            </div>
+          </div>
+
           <save-button :store="store"></save-button>
 
           <h2 class="text-2xl text-bbeeff mt-6 mb-4">
