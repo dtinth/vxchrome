@@ -2,6 +2,7 @@
   "manifest_version": 2,
   "name": "vxchrome",
   "version": "0.1",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "commands": {
     "listen1": {
       "description": "Listen [first language]",
@@ -17,9 +18,9 @@
     }
   },
   "background": {
-    "scripts": ["settings.js", "background.js"]
+    "page": "background.html"
   },
-  "permissions": ["clipboardWrite", "notifications", "storage"],
+  "permissions": ["clipboardWrite", "notifications", "storage", "activeTab"],
 
   "browser_action": {
     "default_icon": "icon.png"
@@ -27,6 +28,7 @@
 
   "options_ui": {
     "page": "options.html",
-    "open_in_tab": false
-  }
+    "open_in_tab": true
+  },
+  "web_accessible_resources": ["popup.html"]
 }

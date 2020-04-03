@@ -7,32 +7,57 @@
     <title>vxchrome</title>
     <style>
       body {
-        background: #353433;
+        background: transparent;
         color: #e9e8e7;
         font: 18px Arimo, sans-serif;
+      }
+      .full body {
+        background: #353433;
         padding: 8px 24px;
       }
-      #log {
-        font: 16px Cousine, Menlo, monospace;
-        min-height: 100vh;
+      #vxchrome .box {
+        position: absolute;
+        z-index: 2147483647;
+        top: 40px;
+        left: 40px;
+        margin-right: 40px;
+        background: #0008;
+        font: bold 24px Arimo, Noto Sans Thai, sans-serif;
+        border-radius: 8px;
+        padding: 8px 16px;
+        color: #fff;
+        text-shadow: 0 2px 8px #000;
+        border: 2px solid #8b8685;
+        box-shadow: 0 4px 16px #000;
+        transition: 0.2s all;
+        line-height: 36px;
+        transform-origin: 0 28px;
+        transform: scale(0.95);
       }
-      #text {
-        margin: 0;
-        font: bold 32px Arimo, Noto Sans Thai, sans-serif;
-        min-height: 100vh;
+      #vxchrome .box[data-status='listening'] {
+        border-color: #bef;
       }
-      #final {
+      #vxchrome .box[data-status='listening'][data-final='true'] {
+        border-color: #d7fc70;
+        transform: scale(1);
+      }
+      #vxchrome .box[data-status='ended'] {
+        transform: scale(1);
+      }
+      #vxchrome .initial {
+        color: #8b8685;
+      }
+      #vxchrome .final {
         color: #d7fc70;
       }
-      #listening {
-        color: #8b8685;
-        font-weight: normal;
-        font-size: 0.5em;
-      }
       #actions {
+        display: none;
         position: fixed;
         bottom: 16px;
         right: 16px;
+      }
+      .full #actions {
+        display: block;
       }
       #actions button {
         border: 0;
@@ -46,11 +71,22 @@
     </style>
   </head>
   <body>
-    <p id="text">
-      <span id="interim"></span>
-      <span id="final"></span>
-      <span id="listening" hidden>(listening)</span>&nbsp;
-    </p>
+    <div id="app">
+      <div id="vxchrome">
+        <template v-if="data">
+          <div
+            class="box"
+            v-if="data.showing"
+            :data-status="data.status"
+            :data-final="data.finalTranscript ? 'true' : 'false'"
+          >
+            <span class="initial">&gt;&gt;&gt;</span>
+            <span class="final">{{ data.finalTranscript }}</span>
+            <span class="interim">{{ data.interimTranscript }}</span>
+          </div>
+        </template>
+      </div>
+    </div>
     <p id="actions">
       <button id="open-options-button">
         <svg
@@ -67,10 +103,7 @@
         </svg>
       </button>
     </p>
-
-    <pre id="log"></pre>
-    <script src="vendor/microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
-    <script src="microsoft-speech.js"></script>
+    <script src="vendor/vue-2.6.11.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
