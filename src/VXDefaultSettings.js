@@ -8,4 +8,7 @@ export const defaultSettings = {
   outputSound: 'on',
   outputNotificationSession: 'off',
   outputNotificationTranscript: 'on',
+
+  customTranscriptFilterCode: '',
+  customOutputModuleCode: '',
 }

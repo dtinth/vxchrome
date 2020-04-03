@@ -5,7 +5,9 @@ let views = [
   VXViews.SoundOutputModule,
   VXViews.SessionNotificationOutputModule,
   VXViews.TranscriptNotificationOutputModule,
+  VXViews.CustomOutputModule,
 ]
+
 let resultHandler = defaultResultHandler
 let currentSettings
 
@@ -18,7 +20,6 @@ const state = mobx.observable({
 // View
 {
   const view = payload => {
-    log('View:', payload)
     views.forEach(v => {
       try {
         if (currentSettings) {
@@ -102,6 +103,15 @@ recognition.onend = function() {
   log('Ended')
 }
 
+function filterTranscript(text) {
+  if (!currentSettings.customTranscriptFilterCode) return text
+  const output = new Function(
+    'text',
+    currentSettings.customTranscriptFilterCode,
+  )(text)
+  return String(output || text)
+}
+
 recognition.onresult = function(event) {
   var finalTranscript = ''
   var interimTranscript = ''
@@ -113,8 +123,8 @@ recognition.onresult = function(event) {
     }
   }
   mobx.runInAction('onresult', () => {
-    state.finalTranscript = finalTranscript
-    state.interimTranscript = interimTranscript
+    state.finalTranscript = filterTranscript(finalTranscript)
+    state.interimTranscript = filterTranscript(interimTranscript)
   })
   resultHandler(interimTranscript, finalTranscript)
 }

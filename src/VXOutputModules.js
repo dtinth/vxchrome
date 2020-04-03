@@ -107,7 +107,6 @@ export const SessionNotificationOutputModule = (() => {
     const progress = finalTranscript ? 100 : 0
     if (showing) {
       if (active) {
-        console.log('Updating!')
         chrome.notifications.update('vx', {
           type: 'progress',
           title,
@@ -115,7 +114,6 @@ export const SessionNotificationOutputModule = (() => {
           progress,
         })
       } else {
-        console.log('Creating!')
         active = true
         chrome.notifications.create('vx', {
           type: 'progress',
@@ -129,7 +127,6 @@ export const SessionNotificationOutputModule = (() => {
       }
     } else {
       if (active) {
-        console.log('Clearing!')
         active = false
         chrome.notifications.clear('vx')
       }
@@ -245,5 +242,12 @@ export const SoundOutputModule = (() => {
         tone(15, 2)
       }
     }
+  })
+})()
+
+export const CustomOutputModule = (() => {
+  return /** @type {VXOutput} */ (function CustomOutputModule(state, settings) {
+    if (!settings.customOutputModuleCode) return
+    new Function('state', settings.customOutputModuleCode)(state)
   })
 })()

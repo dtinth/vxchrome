@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <title>vxchrome</title>
     <style>
       @import 'tailwind.css';
@@ -148,6 +149,67 @@
                 When this is turned on, a separate notification will be sent
                 each time text is copied to the clipboard.
               </boolean-flag>
+            </div>
+          </div>
+
+          <save-button :store="store"></save-button>
+
+          <h2 class="text-2xl text-bbeeff mt-6 mb-4">
+            For advanced users only
+          </h2>
+          <p class="text-red-400 mb-4">
+            Changing any of these settings may break the extension. Any code you
+            enter here will be run on the extension’s behalf. It may cause the
+            extension to crash. Running untrusted code can lead to your
+            browser’s security being compromised.
+          </p>
+
+          <div class="flex items-baseline mb-4">
+            <div class="w-1/3">
+              <label
+                class="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+                for="transcript_filter"
+              >
+                Transcript filter
+              </label>
+            </div>
+            <div class="w-2/3">
+              <textarea
+                class="block w-full form-textarea bg-090807 border-454443 hover:border-656463 shadow placeholder-8b8685 font-mono"
+                id="transcript_filter"
+                type="text"
+                placeholder="return text"
+                rows="5"
+                v-model="store.settings.customTranscriptFilterCode"
+              ></textarea>
+              <span class="block text-8b8685 italic mb-2">
+                This lets you write arbitrary code to tweak the resulting
+                transcript. Input variable: "text".
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-baseline mb-4">
+            <div class="w-1/3">
+              <label
+                class="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+                for="transcript_filter"
+              >
+                Custom output
+              </label>
+            </div>
+            <div class="w-2/3">
+              <textarea
+                class="block w-full form-textarea bg-090807 border-454443 hover:border-656463 shadow placeholder-8b8685 font-mono"
+                id="transcript_filter"
+                type="text"
+                placeholder="console.log('>>', state)&#10;/* Try this out and inspect the extension background page. */"
+                rows="5"
+                v-model="store.settings.customOutputModuleCode"
+              ></textarea>
+              <span class="block text-8b8685 italic mb-2">
+                This lets you send the output elsewhere. Input variable: "state"
+              </span>
             </div>
           </div>
 
