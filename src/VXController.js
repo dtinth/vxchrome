@@ -19,11 +19,19 @@ const state = mobx.observable({
 
 // View
 {
+  const actions = {
+    stop() {
+      if (isActive()) {
+        recognition.stop()
+      }
+    },
+  }
+
   const view = payload => {
     views.forEach(v => {
       try {
         if (currentSettings) {
-          v(payload, currentSettings)
+          v(payload, currentSettings, actions)
         }
       } catch (e) {
         console.error(`Output module "${v.name}" failed`, e)

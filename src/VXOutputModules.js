@@ -5,6 +5,8 @@ export const PopupOutputModule = (() => {
   let activePopup
   let state
   let autoFocus
+  let stop
+
   function broadcastState() {
     if (state) {
       chrome.runtime.sendMessage({ state }, () => {
@@ -39,6 +41,7 @@ export const PopupOutputModule = (() => {
     chrome.runtime.onMessage.addListener(messageListener)
     const windowRemovedListener = function(removedWindowId) {
       if (removedWindowId === windowId) {
+        if (stop) stop()
         chrome.windows.onRemoved.removeListener(windowRemovedListener)
         activePopup = null
       }
@@ -79,13 +82,17 @@ export const PopupOutputModule = (() => {
   return /** @type {VXOutput} */ (function PopupOutputModule(
     nextState,
     settings,
+    actions,
   ) {
     if (settings.outputPopup !== 'on') return
     autoFocus = settings.outputPopupAutoFocus === 'on'
-
+    stop = actions.stop
     state = nextState
+
     if (nextState.showing && !activePopup) {
-      activePopup = createPopup()
+      if (nextState.status !== 'ended') {
+        activePopup = createPopup()
+      }
     } else if (!nextState.showing && activePopup) {
       activePopup.dispose()
       activePopup = null
