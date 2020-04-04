@@ -5,9 +5,13 @@ It should work on macOS and Windows as well as on Linux.
 
 ## How to install
 
+[<img alt="Available in the Chrome Web Store" src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_496x150.png" width="248" height="75" />](https://chrome.google.com/webstore/detail/vx/obopnfigmanifpiojfhebcegjepgaiif)
+
+## How to install from source code
+
 1. Download the source code and extract it.
 
-2. Go to `chrome://extensions` and enable the developer mode.
+2. Go to `chrome://extensions` and enable the **Developer mode**.
 
 3. Click “Load unpacked.”
 
@@ -19,22 +23,10 @@ It should work on macOS and Windows as well as on Linux.
 
 - Press `Ctrl+Shift+9` to start a stop the recognition in Thai language.
 
-- Languages and keyboard shortcuts can be customized.
+- Languages and keyboard shortcuts can be customized in the options.
 
 - Whatever you speak is copied into the clipboard, so you can paste into any apps immediately afterwards.
   If the recognition is incorrect, you can just re-speak it (or fix it manually).
 
 - Go to `chrome://extensions/shortcuts` to customize the keyboard shortcuts to your liking.
   On Windows and macOS, you may also set the shortcut to be global, so that you can use it outside Chrome.
-
-## How to develop
-
-### Set up
-
-1. Clone the project to your local machine.
-
-2. Go to `chrome://extensions` and enable the developer mode.
-
-3. Click “Load unpacked.”
-
-4. Select the project folder.
