@@ -8,7 +8,7 @@ Vue.config.devtools = false
     props: ['store'],
     template: html`
       <div class="flex items-center mb-4">
-        <div class="w-1/3"></div>
+        <div class="w-1/3"><slot></slot></div>
         <div>
           <button
             @click="store.save"

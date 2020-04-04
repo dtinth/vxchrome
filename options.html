@@ -284,6 +284,17 @@
 
           <save-button :store="store"></save-button>
         </div>
+        <div class="h-24"></div>
+        <div
+          class="fixed inset-x-0 bottom-0 px-8 bg-090807"
+          v-show="store.changed"
+        >
+          <div class="max-w-xl pt-4">
+            <save-button :store="store">
+              <div class="text-yellow-300 font-bold">Unsaved changes</div>
+            </save-button>
+          </div>
+        </div>
       </template>
     </div>
 
