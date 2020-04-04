@@ -1,6 +1,6 @@
 {
   "name": "vx-chrome",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "dependencies": {},
   "devDependencies": {
     "@tailwindcss/custom-forms": "^0.2.1",
@@ -16,6 +16,7 @@
     "background.html",
     "content-script.js",
     "icon.png",
+    "icon-128.png",
     "manifest.json",
     "options.html",
     "options.js",
