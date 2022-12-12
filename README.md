@@ -19,9 +19,11 @@ It should work on macOS and Windows as well as on Linux.
 
 ## How to use
 
-- Press `Ctrl+Shift+0` to start a stop the recognition in English language.
+- Press `Ctrl+Shift+1` to start a stop the recognition in English language.
 
-- Press `Ctrl+Shift+9` to start a stop the recognition in Thai language.
+- Press `Ctrl+Shift+2` to start a stop the recognition in Thai language.
+
+- Press `Ctrl+Shift+3` to stop the recognition.
 
 - Languages and keyboard shortcuts can be customized in the options.
 

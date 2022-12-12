@@ -33,14 +33,9 @@ Totally Free
 ・ No support is provided for this extension either.
 ・ If you encounter any issue, the source code is available for you to build and debug yourself at https://github.com/dtinth/vxchrome.
 
-Advanced Features for People Who Knows JavaScript
-・ You can supply a custom JavaScript code to process the transcript before it’s being copied to the clipboard (a “custom transcript filter”).
-・ You can also supply a custom JavaScript code to send the processed transcript elsewhere (a “custom output module”).
-・ If you know JavaScript, this extension is essentially doing this: ((r = new webkitSpeechRecognition(), o = copy) => (r.lang = 'en', r.onresult = e => (x => (console.log(x), o(x)))(Array.from(e.results).map(r => r[0].transcript).join('')), r.start()))() // (you can run it in Chrome DevTools)
-
 MIT License
 
-Copyright (c) 2020 dtinth
+Copyright (c) 2022 KappaFlow, dtinth
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
