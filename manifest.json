@@ -1,30 +1,40 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "vx",
   "description": "This extension listens to you and copies what you said to the clipboard.",
-  "version": "0.5.2",
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "version": "0.6.0",
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src data:"
+  },
   "commands": {
+    "stop": {
+      "description": "Stop",
+      "suggested_key": {
+        "default": "Ctrl+Shift+3"
+      }
+    },
     "listen1": {
       "description": "Listen [first language]",
       "suggested_key": {
-        "default": "Ctrl+Shift+0"
+        "default": "Ctrl+Shift+1"
       }
     },
     "listen2": {
       "description": "Listen [second language]",
       "suggested_key": {
-        "default": "Ctrl+Shift+9"
+        "default": "Ctrl+Shift+2"
       }
     }
   },
   "background": {
-    "page": "background.html"
+    "service_worker": "background.js",
+    "type": "module"
   },
-  "permissions": ["clipboardWrite", "notifications", "storage", "activeTab"],
+  "permissions": ["clipboardWrite", "notifications", "storage", "activeTab", "scripting", "system.display"],
 
-  "browser_action": {
-    "default_icon": "icon.png"
+  "action": {
+    "512": "icon.png",
+    "128": "icon-128.png"
   },
   "icons": { "128": "icon-128.png" },
 
@@ -32,5 +42,9 @@
     "page": "options.html",
     "open_in_tab": true
   },
-  "web_accessible_resources": ["popup.html"]
+  "web_accessible_resources": [{
+    "resources": ["popup.html"],
+    "matches": ["<all_urls>"],
+    "extension_ids": [ "*" ]
+  }]
 }

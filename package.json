@@ -1,28 +1,27 @@
 {
   "name": "vx-chrome",
-  "version": "0.5.2",
-  "dependencies": {},
+  "version": "0.6.0",
   "devDependencies": {
-    "@tailwindcss/custom-forms": "^0.2.1",
-    "@types/chrome": "^0.0.103",
-    "tailwindcss": "^1.2.0"
+    "create-vite": "^3.2.1",
+    "@types/chrome": "^0.0.203"
   },
   "scripts": {
-    "tailwind:build": "tailwindcss build tailwind.src.css -o tailwind.css"
+    "preinitproject": "npm install && npm update",
+    "initproject": "npm install --prefix frontend && npm update --prefix frontend",
+    "postinitproject": "cd frontend && npm run build && npm run preview",
+    "pack": "npm pack --pack-destination tmp"
   },
   "files": [
     "src",
-    "vendor",
-    "background.html",
-    "content-script.js",
+    "assets",
+    "background.js",
     "icon.png",
     "icon-128.png",
     "manifest.json",
     "options.html",
     "options.js",
     "popup.html",
-    "popup.js",
-    "tailwind.css"
+    "popup.js"
   ],
   "private": true
 }
