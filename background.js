@@ -15,7 +15,6 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 async function init() {
-
   await Promise.all(
     [chrome.storage.local.get(defaultState).then(
     (state) => {
@@ -78,7 +77,6 @@ function createWindow() {
     return tab;
   }
 
-
   function contentScript() {
     if (!window.vxframe) {
       const css = String.raw
@@ -119,46 +117,45 @@ function createWindow() {
     }
   }
 
-  getCurrentTab().then( (tab) =>
+  getCurrentTab().then( (tab) => {
+    if ( m_settings.outputPopup === 'on'
+        || (!tab.url?.startsWith("http://") && !tab.url?.startsWith("https://"))
+        || tab?.id === undefined )
     {
-
-      if (m_settings.outputPopup === 'on' || (!tab.url?.startsWith("http://") && !tab.url?.startsWith("https://")) || tab?.id === undefined )
-      {
-        createWindow()
-      }
-      else
-      {
-        chrome.scripting.executeScript({ target: {tabId: tab.id}, func: contentScript /* files: ['content-script.js'] */ } )
-      }
-
-      m_state.isWindowActive = true
-      chrome.storage.local.set( m_state )
-
-      function createWindow() {
-        chrome.system.display.getInfo(function (display_properties) {
-          var primary_disp = display_properties[0]
-          for (const element of display_properties) {
-            if( element.isPrimary )
-            {
-              primary_disp = element
-            }
-          }
-
-          chrome.windows.create(
-            {
-              url: 'popup.html?full',
-              type: 'popup',
-              left: 0,
-              top: primary_disp.bounds.height - 200,
-              width: primary_disp.bounds.width,
-              height: 180,
-              focused: m_settings.outputPopupAutoFocus === 'on',
-            },
-          )
-        })
-      }
+      createWindow()
     }
-  )
+    else
+    {
+      chrome.scripting.executeScript({ target: {tabId: tab.id}, func: contentScript } )
+    }
+
+    m_state.isWindowActive = true
+    chrome.storage.local.set( m_state )
+
+    function createWindow() {
+      chrome.system.display.getInfo(function (display_properties) {
+        var primary_disp = display_properties[0]
+        for (const element of display_properties) {
+          if( element.isPrimary )
+          {
+            primary_disp = element
+          }
+        }
+
+        chrome.windows.create(
+          {
+            url: 'popup.html?full',
+            type: 'popup',
+            left: 0,
+            top: primary_disp.bounds.height - 200,
+            width: primary_disp.bounds.width,
+            height: 180,
+            focused: m_settings.outputPopupAutoFocus === 'on',
+          },
+        )
+      })
+    }
+  })
 }
 
 function closeWindow() {
